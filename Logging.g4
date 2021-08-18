@@ -1,0 +1,27 @@
+grammar Logging;
+
+start: log* EOF;
+log : gin* dateformat '-' TMSTAMP pipe statusCode pipe requestTime pipe httpMethod path;
+gin : '[GIN]';
+dateformat : DATE;
+requestTime: LetterOrDigit* '.'+ LetterOrDigit* Mu ;
+httpMethod: postMethod | getMethod;
+postMethod: POST;
+getMethod: GET;
+path: .*?;
+pipe: PIPE;
+statusCode: CODE;
+POST: ('POST' | 'post');
+GET: ('GET' | 'get');
+Identifier : Letter LetterOrDigit* ;
+Letter : [a-zA-Z$_] ;
+Mu : 'µs';
+LetterOrDigit : [a-zA-Z0-9$_];
+PIPE : '|';
+CODE : '200' | '404' | '201' | '400';
+HYPHEN : '-';
+SPECIAL : [@#,;:'"/] | HYPHEN ;
+DATE : DIGIT DIGIT DIGIT DIGIT '/' DIGIT DIGIT '/' DIGIT DIGIT ;
+TMSTAMP : DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ;
+DIGIT : [0-9] ;
+WS : [ \t\r\n\u000C]+ -> skip;
