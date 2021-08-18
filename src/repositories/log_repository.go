@@ -1,26 +1,27 @@
 package repositories
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"strings"
+
+	"github.com/rdurelli/loggingParser/src/lib"
 
 	"github.com/rdurelli/loggingParser/src/models"
 )
 
 type logRepository struct {
-	Db *sql.DB
+	Db lib.Db
 }
 
-func NewLogReposiry(db *sql.DB) Repository {
+func NewLogReposiry(Db lib.Db) Repository {
 	return &logRepository{
-		Db: db,
+		Db: Db,
 	}
 }
 
 func (lR logRepository) Save(lo *models.Log) (*models.Log, error) {
-	stmt, err := lR.Db.Prepare("INSERT INTO log (date, time, http_code, http_method, path) VALUES (?, ?, ?, ?, ?)")
+	stmt, err := lR.Db.Db.Prepare("INSERT INTO log (date, time, http_code, http_method, path) VALUES (?, ?, ?, ?, ?)")
 	if err != nil {
 		log.Fatal("Not possible Create statement to save LOG", err)
 		return nil, err
@@ -52,7 +53,7 @@ func (lR logRepository) SaveBatch(logs *[]models.Log) error {
 	}
 	stmt := fmt.Sprintf("INSERT INTO log (date, time, http_code, http_method, path) VALUES %s",
 		strings.Join(valueStrings, ","))
-	_, err := lR.Db.Exec(stmt, valueArgs...)
+	_, err := lR.Db.Db.Exec(stmt, valueArgs...)
 	return err
 }
 

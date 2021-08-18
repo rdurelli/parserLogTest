@@ -2,7 +2,6 @@ package utils
 
 import (
 	"bufio"
-	"database/sql"
 	"fmt"
 	"io"
 	"math"
@@ -22,11 +21,11 @@ import (
 type readerLog struct {
 	LogPath string
 	Logs    *[]models.Log
-	db      *sql.DB
+	db      lib.Db
 	logger  lib.Logger
 }
 
-func NewReaderLog(LogPath string, Logs *[]models.Log, db *sql.DB, logger lib.Logger) readerLog {
+func NewReaderLog(LogPath string, Logs *[]models.Log, db lib.Db, logger lib.Logger) readerLog {
 	return readerLog{
 		LogPath: LogPath,
 		Logs:    Logs,
@@ -126,7 +125,7 @@ func (rl readerLog) Parse(chunk []byte, linesPool *sync.Pool, stringPool *sync.P
 				stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 
 				p := parser.NewLoggingParser(stream)
-				antlr.ParseTreeWalkerDefault.Walk(&lib.LogParser{
+				antlr.ParseTreeWalkerDefault.Walk(&LogParser{
 					Logs:       rl.Logs,
 					Repository: repositories.NewLogReposiry(rl.db),
 				}, p.Start())
