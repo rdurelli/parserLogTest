@@ -19,5 +19,5 @@ func NewLogService(logger lib.Logger, repository repositories.Repository) LogSer
 }
 
 func (lS LogService) Find(offset string, limit string) (*[]models.Log, error) {
-	panic("implement me")
+	return lS.repository.Find(offset, limit)
 }

@@ -58,5 +58,28 @@ func (lR logRepository) SaveBatch(logs *[]models.Log) error {
 }
 
 func (lR logRepository) Find(offset string, limit string) (*[]models.Log, error) {
-	panic("implement me")
+	var logs = make([]models.Log, 0)
+	stmt, err := lR.Db.Db.Prepare("SELECT ID, date, time, http_code, http_method, path FROM log LIMIT ?  OFFSET ?")
+	if err != nil {
+		log.Fatal("Not possible Create statement to save LOG", err)
+		return nil, err
+	}
+	rows, err := stmt.Query(limit, offset)
+	defer rows.Close()
+	if err != nil {
+		log.Fatal("Not possible to save into LOG", err)
+		return nil, err
+	}
+	for rows.Next() {
+		var log models.Log
+		if err := rows.Scan(&log.ID, &log.Date, &log.Time, &log.HttpCode,
+			&log.HttpMethod, &log.Path); err != nil {
+			return &logs, err
+		}
+		logs = append(logs, log)
+	}
+	if err = rows.Err(); err != nil {
+		return &logs, err
+	}
+	return &logs, nil
 }
