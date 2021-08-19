@@ -23,13 +23,6 @@ func NewLogController(logger lib.Logger, service services.LogService) LogControl
 func (lC LogController) Find(c *gin.Context) {
 	offset := c.DefaultQuery("offset", "0")
 	limit := c.DefaultQuery("limit", "10")
-	if offset == "" {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"status":  http.StatusBadRequest,
-			"message": "Please, provide the offset",
-		})
-		return
-	}
 	logs, err := lC.service.Find(offset, limit)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
