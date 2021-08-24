@@ -32,12 +32,14 @@ func (lC LogController) Find(c *gin.Context) {
 	}
 	if len(*logs) == 0 {
 		c.JSON(http.StatusOK, gin.H{
+			"success": false,
 			"message": "There is not log to get in the database. Please, call support.",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"logs": *logs,
-		"size": len(*logs),
+		"logs":    *logs,
+		"size":    len(*logs),
+		"success": true,
 	})
 }
