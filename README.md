@@ -9,7 +9,7 @@
 <h3 align="center">Logger Parser</h3>
 
   <p align="center">
-    Parser criado como objetivo de estudo da linguagem de programação Go
+    Parser created with ANTLR 4 to import logs in Go using goroutines.
     <br />
     <br />
     <br />
