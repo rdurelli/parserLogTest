@@ -40,7 +40,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## Sobre o Projeto
+<!-- ## Sobre o Projeto
 
 Uma das melhores formas de se aprender alguma coisa é fazendo.
 
@@ -57,7 +57,7 @@ Boas práticas de programação foram também utilizadas - injeção de dependê
 
 O código-fonte desse projeto pode ser visualizado em: https://github.com/rdurelli/parserLogTest
 
-
+ -->
 
 ### Built With
 
