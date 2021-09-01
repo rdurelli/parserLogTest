@@ -8,8 +8,9 @@
 
 <h3 align="center">Logger Parser</h3>
 
-  <p align="center">
-    Parser created with ANTLR 4 to import logs in Go using goroutines.
+  <br align="center">
+    Parser created with ANTLR 4 to import logs in Go using goroutines. 
+    We also provide an end-point (GET) to fetch the <i>n's</i> saved logs. 
     <br />
     <br />
     <br />
@@ -133,7 +134,19 @@ To get a local copy up and running follow these simple steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-To execute the source code use the Makefile... run directly the main.go file
+To execute the source code use the Makefile... run directly the main.go file.
+if everything was good we will see a message: 
+```
+Time taken to process all logs
+```
+
+Then, an end-point is available: 
+```
+GET   /api/logs
+QUERY PARAMS: offset and limit 
+```
+
+One can specify two query params in this end-point: offset and limit
 
 
 
