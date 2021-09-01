@@ -159,7 +159,7 @@ or
 
 curl http://localhost:3333/api/logs?offset=10&limit=5
 ```
-Then, as response we will get the following json:
+Then, when use the second request we will get the response as follow:
 
 ### Response
 
