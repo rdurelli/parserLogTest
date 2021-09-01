@@ -153,7 +153,11 @@ One can specify two query params in this end-point:
 
 Example:
 ```
-http://localhost:3333/api/logs?offset=10&limit=5
+curl http://localhost:3333/api/logs
+
+or
+
+curl http://localhost:3333/api/logs?offset=10&limit=5
 ```
 Then, as response we will get the following json:
 
