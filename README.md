@@ -142,12 +142,61 @@ Time taken to process all logs
 
 Then, an end-point is available: 
 ```
-GET   /api/logs
-QUERY PARAMS: offset and limit 
+GET   /api/logs 
 ```
 
-One can specify two query params in this end-point: offset and limit
+One can specify two query params in this end-point: 
+* offset
+* limit
 
+Example:
+```
+http://localhost:3333/api/logs?offset=10&limit=5
+```
+Then, as result we will get the following json:
+```
+{
+    "logs": [
+        {
+            "id": 4573,
+            "date": "2021/08/16",
+            "http_code": "200",
+            "http_method": "POST",
+            "path": "\"/api/todos\""
+        },
+        {
+            "id": 4574,
+            "date": "2021/08/16",
+            "http_code": "200",
+            "http_method": "POST",
+            "path": "\"/api/todos\""
+        },
+        {
+            "id": 4575,
+            "date": "2021/08/16",
+            "http_code": "200",
+            "http_method": "GET",
+            "path": "\"/api/todos\""
+        },
+        {
+            "id": 4576,
+            "date": "2021/08/16",
+            "http_code": "200",
+            "http_method": "GET",
+            "path": "\"/api/todos\""
+        },
+        {
+            "id": 4577,
+            "date": "2021/08/16",
+            "http_code": "200",
+            "http_method": "GET",
+            "path": "\"/api/todos\""
+        }
+    ],
+    "size": 5,
+    "success": true
+}
+```
 
 
 <!-- CONTACT -->
