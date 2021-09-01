@@ -149,11 +149,16 @@ One can specify two query params in this end-point:
 * offset
 * limit
 
+### Request
+
 Example:
 ```
 http://localhost:3333/api/logs?offset=10&limit=5
 ```
-Then, as result we will get the following json:
+Then, as response we will get the following json:
+
+### Response
+
 ```
 {
     "logs": [
